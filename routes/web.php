@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +18,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
-Auth::routes();
+Route::get('/product', [ProductController::class, 'index']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/news/{id}', [NewsController::class, 'index']);
+
+Route::get('/program', [ProgramController::class, 'index']);
+
+Route::get('/about', function () {
+    return view('about-us');
+});
+
+//resource only contact-us
+Route::resource('contact-us', ContactController::class) -> only(['index', 'store']);
+
+
+
+
