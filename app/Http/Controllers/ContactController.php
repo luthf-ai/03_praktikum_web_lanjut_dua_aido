@@ -19,6 +19,6 @@ class ContactController extends Controller
             'message' => 'required'
         ]);
 
-        return redirect()->route('contact-us.index')->with('success', 'Message sent successfully!');
+        return redirect()->route('contact')->with('success', 'Message sent successfully!');
     }
 }

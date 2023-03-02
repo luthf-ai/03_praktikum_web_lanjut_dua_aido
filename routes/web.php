@@ -19,20 +19,23 @@ use App\Http\Controllers\ContactController;
 
 Route::get('/', function () {
     return view('home');
-});
+}) -> name('home');
 
-Route::get('/product', [ProductController::class, 'index']);
+Route::get('/product', [ProductController::class, 'index']) -> name('product');
 
-Route::get('/news/{id}', [NewsController::class, 'index']);
+Route::get('/news/{id}', [NewsController::class, 'index']) -> name('news');
 
-Route::get('/program', [ProgramController::class, 'index']);
+Route::get('/program', [ProgramController::class, 'index']) -> name('program');
 
 Route::get('/about', function () {
     return view('about-us');
-});
+}) -> name('about');
 
 //resource only contact-us
-Route::resource('contact-us', ContactController::class) -> only(['index', 'store']);
+Route::resource('contact-us', ContactController::class) -> only(['index', 'store']) -> names([
+    'index' => 'contact',
+    'store' => 'contact.store'
+]);
 
 
 
